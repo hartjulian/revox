@@ -1,0 +1,18 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+}
+
+.header img {
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+}
