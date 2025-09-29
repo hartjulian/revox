@@ -1,17 +1,14 @@
 import { useState } from 'react'
 import './App.css'
-import revoxLogo from '../../assets/revox-text-logo.png';
+import Header from '../Header/Header.jsx';
+import Feed from '../Feed/Feed.jsx';
 
 function App() {
 
   return (
     <>
-      <div className='header'>
-        <img src={revoxLogo} />
-      </div>
-      <div className="post-container">
-
-      </div>
+      <Header />
+      <Feed />
     </>
   )
 }
