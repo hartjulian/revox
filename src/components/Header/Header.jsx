@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './Header.css';
 import revoxLogo from '../../assets/revox-text-logo.png';
 
-function Header() {
+function Header ({loggedIn} ) {
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -13,7 +13,7 @@ function Header() {
             <div className='logo-container'>
                 <img src={revoxLogo} />
             </div>
-            <div className='search-container'>
+            <div className='search-container' hidden={!loggedIn}>
                 <form>
                     <input type='text' id='search-bar' name='search-bar' placeholder='Search for posts' />
                 </form>
