@@ -57,6 +57,10 @@ const reddit = {
                         const newTokenExpires = new Date(now.getTime() + (json_auth_token_response.expires_in * 1000));
                         localStorage.setItem('accessToken', json_auth_token_response.access_token);
                         localStorage.setItem('accessTokenExpiry', newTokenExpires);
+                        // remove auth code and associated attributes from local storage now that they have been used
+                        localStorage.removeItem('authCode');
+                        localStorage.removeItem('stateReceived');
+                        localStorage.removeItem('stateSent');
                         return true;
                     };
 
@@ -69,6 +73,8 @@ const reddit = {
             // access token exists.  Check if it's expired
             const now = new Date();
             if (now > new Date(accessTokenExpiry)) {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('accessTokenExpiry');
                 return false;
             }
             return true;
