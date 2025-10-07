@@ -1,10 +1,15 @@
+import Post from '../Post/Post.jsx';
+import './Feed.css';
 
-
-function Feed() {
+function Feed( {postsData} ) {
+    console.log(postsData);
     return (
-        <div>
-            <h2>Placeholder for posts!</h2>
-            <p>Some content here ...</p>
+        <div className='posts-container'>
+            {(postsData.length === 0) && <h2>Loading posts!</h2>}
+            
+            {postsData.map((post, index) => {
+                return <Post post={post} key={index}/>;
+            })}
         </div>
     );
 }
