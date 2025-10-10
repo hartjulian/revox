@@ -13,12 +13,6 @@ function Header ({loggedIn} ) {
             <div className='logo-container'>
                 <img src={revoxLogo} />
             </div>
-            <div className='search-container' hidden={!loggedIn}>
-                <form>
-                    <input type='text' id='search-bar' name='search-bar' placeholder='Search for posts' />
-                </form>
-            </div>
-            <div className='right-container'></div>
         </div>
     );
 }

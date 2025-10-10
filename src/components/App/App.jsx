@@ -10,7 +10,7 @@ function App() {
   const [checkLogin, setCheckLogin] = useState(true);
   const [fetchingPosts, setFetchingPosts] = useState(false);
   const [fetchMorePosts, setFetchMorePosts] = useState(true);
-  const [subReddit, setSubReddit] = useState(null);
+  const [subreddit, setSubreddit] = useState();
   const [postsData, setPostsData] = useState([]);
 
 
@@ -33,11 +33,18 @@ function App() {
   }, [loggedIn, fetchMorePosts])
 
   const getPosts = async () => {
-    const posts = await reddit.getPosts(subReddit);
+    const posts = await reddit.getPosts(subreddit);
     if (posts.length > 0) {
       setPostsData([]);     
       posts.forEach(post => {
-        setPostsData((prev) => [...prev, {title: post.data.title, author: post.data.author}]);
+        setPostsData((prev) => [...prev, {
+          title: post.data.title,
+          permalink: post.data.permalink,
+          author: post.data.author,
+          subreddit: post.data.subreddit,
+          imageUrl: (post.data.preview ? post.data.preview.images[0].source.url : null),
+          selftext: post.data.selftext
+        }]);
       });
     }
   }

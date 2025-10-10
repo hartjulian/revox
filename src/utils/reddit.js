@@ -112,9 +112,9 @@ const reddit = {
             }
         };
     },
-    async getPosts(subReddit = 'popular') {
+    async getPosts(subreddit = 'popular') {
         const accessToken = localStorage.getItem('accessToken');
-        const listingsUrl = 'https://oauth.reddit.com/r/popular';
+        const listingsUrl = `https://oauth.reddit.com/r/${subreddit}`;
         const payload = {
             method: 'GET',
             headers: {

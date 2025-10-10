@@ -2,7 +2,6 @@ import Post from '../Post/Post.jsx';
 import './Feed.css';
 
 function Feed( {postsData} ) {
-    console.log(postsData);
     return (
         <div className='posts-container'>
             {(postsData.length === 0) && <h2>Loading posts!</h2>}

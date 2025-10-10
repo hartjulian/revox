@@ -1,5 +1,41 @@
 .post {
     width: 50%;
-    background-color: RGB(8,52,113);
+    background-color: rgb(8,52,113);
     margin: 2rem 0;
+    padding: 0 2rem;
+    border-radius: 1rem;
+}
+
+.image-container {
+    width: 100%;
+}
+
+.image-container img {
+    width: 100%;
+}
+
+.title, .selftext, .subreddit  {
+    text-align: left;
+}
+
+a {
+    color: rgba(255, 255, 255, 0.87);
+}
+
+a:hover {
+    color:rgba(255, 255, 255, 0.5)
+}
+
+.post-details {
+    display: inline-flex;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.author {
+    margin-left: auto;
+}
+
+.subreddit {
+    font-weight: bold;
 }
