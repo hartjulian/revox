@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import './Header.css';
+import Logout from '../Logout/Logout';
 import revoxLogo from '../../assets/revox-text-logo.png';
 
-function Header ({loggedIn} ) {
-
-    const [searchTerm, setSearchTerm] = useState('');
-
-    //TODO: create handler functions for onChange and onEnter (??) when user enters a search term or hits enter.
+function Header ( {loggedIn, logoutClick} ) {
 
     return (
         <div className='header'>
+            <div className='left-container' />
             <div className='logo-container'>
-                <img src={revoxLogo} />
+                <img src={revoxLogo} alt='Revox logo' />
+            </div>
+            <div className='right-container'>
+                {loggedIn && <Logout onClick={logoutClick}/>}
             </div>
         </div>
     );

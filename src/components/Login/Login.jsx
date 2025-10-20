@@ -1,7 +1,10 @@
-function Login( {onClick} ) {
-    //TODO - Make this prettier!
+import './Login.css';
+
+function Login({ onClick }) {
     return (
-    <input type="button" name="login-btn" id="login-btn" value="Login using Reddit" onClick={onClick}></input>
+        <div className="login-container">
+            <input type="button" name="login-btn" id="login-btn" value="Log In using Reddit" onClick={onClick}></input>
+        </div>
     );
 };
 

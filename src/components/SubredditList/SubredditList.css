@@ -1,0 +1,13 @@
+.subreddits-container {
+    display: flex;
+    flex-direction: column;
+    grid-area: right-side;
+    margin: 2rem;
+    text-align: left;
+    background-color: rgb(8,52,113);
+    border-radius: 1rem;
+}
+
+.subreddits-heading {
+    margin: 2rem;
+}

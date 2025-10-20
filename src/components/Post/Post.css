@@ -1,13 +1,12 @@
 .post {
-    width: 50%;
+    width: 100%;
     background-color: rgb(8,52,113);
-    margin: 2rem 0;
-    padding: 0 2rem;
+    margin: 2rem;
     border-radius: 1rem;
 }
 
 .image-container {
-    width: 100%;
+    margin: 0 2rem;
 }
 
 .image-container img {
@@ -16,6 +15,7 @@
 
 .title, .selftext, .subreddit  {
     text-align: left;
+    margin: 2rem;
 }
 
 a {
@@ -26,13 +26,18 @@ a:hover {
     color:rgba(255, 255, 255, 0.5)
 }
 
+.selftext a {
+    text-decoration: underline;
+}
+
 .post-details {
     display: inline-flex;
     width: 100%;
-    margin: 2rem 0;
+    margin: 0;
 }
 
 .author {
+    margin: 2rem;
     margin-left: auto;
 }
 

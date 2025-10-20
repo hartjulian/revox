@@ -4,13 +4,13 @@ import reddit from '../../utils/reddit.js';
 import Header from '../Header/Header.jsx';
 import Feed from '../Feed/Feed.jsx';
 import Login from '../Login/Login.jsx';
+import SubredditList from '../SubredditList/SubredditList.jsx';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [checkLogin, setCheckLogin] = useState(true);
-  const [fetchingPosts, setFetchingPosts] = useState(false);
-  const [fetchMorePosts, setFetchMorePosts] = useState(true);
-  const [subreddit, setSubreddit] = useState();
+  const [currentSubreddit, setCurrentSubreddit] = useState();
+  const [subredditsData, setSubredditsData] = useState([]);
   const [postsData, setPostsData] = useState([]);
 
 
@@ -20,22 +20,44 @@ function App() {
       checkLoginStatus();
       setCheckLogin(false);
     };
-    setFetchMorePosts(loggedIn);
-  }, [checkLogin])
+  }, [checkLogin]);
 
   useEffect(() => {
-    if (loggedIn && fetchMorePosts) {
-      setFetchingPosts(true);
-      getPosts();
-      setFetchMorePosts(false);
-      setFetchingPosts(false);
+    if (loggedIn && subredditsData.length === 0) {
+      getSubreddits();
     };
-  }, [loggedIn, fetchMorePosts])
+  }, [loggedIn, subredditsData]);
+
+  useEffect(() => {
+    if (loggedIn && currentSubreddit) {
+      setPostsData([]);
+      getPosts();
+    };
+  }, [loggedIn, currentSubreddit]);
+
+  useEffect(() => {
+    if (typeof(currentSubreddit) === "undefined") {
+      setCurrentSubreddit(subredditsData[0]);
+    };
+  }, [subredditsData]);
+
+  const getSubreddits = async () => {
+    const subreddits = await reddit.getSubreddits();
+    if (subreddits.length > 0) {
+      subreddits.forEach(subreddit => {
+        setSubredditsData((prev) => [...prev, {
+          displayName: subreddit.data.display_name,
+          iconImg: (subreddit.data.icon_img ? subreddit.data.icon_img : null),
+          title: subreddit.data.title
+        }]);
+      });
+    };
+  };
 
   const getPosts = async () => {
-    const posts = await reddit.getPosts(subreddit);
+    const posts = await reddit.getPosts(currentSubreddit.displayName);
     if (posts.length > 0) {
-      setPostsData([]);     
+      setPostsData([]);
       posts.forEach(post => {
         setPostsData((prev) => [...prev, {
           title: post.data.title,
@@ -46,8 +68,8 @@ function App() {
           selftext: post.data.selftext
         }]);
       });
-    }
-  }
+    };
+  };
 
   const checkLoginStatus = async () => {
     setLoggedIn(await reddit.checkLogin());
@@ -55,12 +77,25 @@ function App() {
 
   const handleLogin = () => {
     reddit.login();
-  }
+  };
+
+  const handleLogout = () => {
+    reddit.logout();
+    checkLoginStatus();
+  };  
+
+  const selectSubreddit = (subreddit) => {
+    setCurrentSubreddit(subreddit);
+  };
 
   return (
     <>
-      <Header loggedIn={loggedIn} />
-      {loggedIn ? <Feed postsData={postsData} /> : <Login onClick={handleLogin} />}
+      <Header loggedIn={loggedIn} logoutClick={handleLogout}/>
+      {!loggedIn &&<Login onClick={handleLogin} />}
+      <div className='grid-container'>
+          {loggedIn && <Feed postsData={postsData} />}
+          {loggedIn && <SubredditList subredditsData={subredditsData} onClick={selectSubreddit} currentSubreddit={currentSubreddit}/>}
+      </div>
     </>
   )
 }

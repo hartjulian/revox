@@ -112,7 +112,7 @@ const reddit = {
             }
         };
     },
-    async getPosts(subreddit = 'popular') {
+    async getPosts(subreddit) {
         const accessToken = localStorage.getItem('accessToken');
         const listingsUrl = `https://oauth.reddit.com/r/${subreddit}`;
         const payload = {
@@ -132,6 +132,32 @@ const reddit = {
             console.log('Something went wrong!');
             return [];
         }
+    },
+    async getSubreddits() {
+        const accessToken = localStorage.getItem('accessToken');
+        const subredditUrl = 'https://oauth.reddit.com/subreddits/popular';
+        const payload = {
+            method: 'GET',
+            headers: {
+                Authorization: `bearer ${accessToken}`,
+            },
+        }
+        try {
+            const response = await fetch(subredditUrl, payload);
+            if (response.status === 200) {
+                const responseBody = await response.json();
+                return responseBody.data.children;
+            }
+        } catch (e) {
+            //  something went wrong.  Return empty array and handle in calling routine.
+            console.log('Something went wrong!');
+            return [];
+        }
+    },
+    logout() {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('accessTokenExpiry');
+        localStorage.removeItem('refreshToken');
     }
 }
 

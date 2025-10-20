@@ -1,8 +1,6 @@
 .posts-container {
-    position: relative;
-    top: 100px;
     display: flex;
     flex-direction: column;
-    justify-items: center;
     align-items: center;
+    grid-area: main-grid;
 }

@@ -1,0 +1,33 @@
+.subreddit-container {
+    display: flex;
+    align-items: center;
+}
+
+.subreddit-container:hover {
+    color:rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.active {
+    background-color: rgba(24, 24, 24, 0.5);
+}
+
+.subreddit-name {
+    margin-right: 2rem;
+}
+
+.subreddit-icon-img {
+    margin: 1rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+p.subreddit-icon-img {
+    line-height: 2rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.87);
+    color: #242424;    
+    border-radius: 1rem;
+    text-transform: uppercase;
+}
