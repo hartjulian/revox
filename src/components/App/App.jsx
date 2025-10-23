@@ -12,6 +12,7 @@ function App() {
   const [currentSubreddit, setCurrentSubreddit] = useState();
   const [subredditsData, setSubredditsData] = useState([]);
   const [postsData, setPostsData] = useState([]);
+  const [hideMenu, setHideMenu] = useState(true);
 
 
   // Check if user is already logged in, or in auth callback flow
@@ -85,16 +86,22 @@ function App() {
   };  
 
   const selectSubreddit = (subreddit) => {
+    setHideMenu(true);
     setCurrentSubreddit(subreddit);
+  };
+
+  const toggleMenu = () => {
+    setHideMenu(!hideMenu);
+    window.scrollTo(0, 0); 
   };
 
   return (
     <>
-      <Header loggedIn={loggedIn} logoutClick={handleLogout}/>
+      <Header loggedIn={loggedIn} logoutClick={handleLogout} menuClick={toggleMenu} />
       {!loggedIn &&<Login onClick={handleLogin} />}
       <div className='grid-container'>
           {loggedIn && <Feed postsData={postsData} />}
-          {loggedIn && <SubredditList subredditsData={subredditsData} onClick={selectSubreddit} currentSubreddit={currentSubreddit}/>}
+          {loggedIn && <SubredditList subredditsData={subredditsData} onClick={selectSubreddit} currentSubreddit={currentSubreddit} hideMenu={hideMenu} />}
       </div>
     </>
   )

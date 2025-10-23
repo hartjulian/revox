@@ -1,13 +1,26 @@
 #root {
   max-width: 1280px;
+  min-width: 0;
   margin: 0 auto;
   text-align: center;
 }
 
 .grid-container {
   display: grid;
-  grid-template-areas: 'left-side main-grid right-side';
-  grid-template-columns: 0 3fr 1fr;
+  grid-template-areas: 'main-grid right-side';
+  grid-template-columns: 3fr 1fr;
   position: relative;
-  top: 100px;
+  gap: 2rem;
+}
+
+@media only screen and (max-width: 1360px)  {
+  #root {
+    margin: 0 2rem;
+  }
+}
+
+@media only screen and (max-width: 1160px) {
+  .grid-container {
+    display: flex;
+  }
 }

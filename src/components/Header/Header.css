@@ -1,7 +1,7 @@
 .header {
-  position: fixed;
+  max-width: 1280px;
+  position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
   display: flex;
   z-index: 1;
@@ -9,11 +9,13 @@
 }
 
 .left-container {
-  width: 10%;
+  width: 20%;
+  margin: auto;
+  text-align: left;
 }
 
 .logo-container {
-  width: 80%;
+  width: 60%;
   margin: auto;
 }
 
@@ -22,7 +24,39 @@
   margin: 1rem;
 }
 
+.icon-logo {
+  display: none;
+}
+
 .right-container {
-  width: 10%;
+  width: 20%;
   margin: auto;
+  text-align: right;
+}
+
+@media only screen and (max-width: 550px) {
+  .text-logo {
+    display: none;
+  }
+
+  .icon-logo {
+    display: inline;
+  }
+
+  .left-container {
+    width: 20%;
+    margin: auto;
+    text-align: left;
+  }
+
+  .logo-container {
+    width: 20%;
+    margin: auto;
+  }
+
+  .right-container {
+    width: 60%;
+    margin: auto;
+    text-align: right;
+  }
 }
