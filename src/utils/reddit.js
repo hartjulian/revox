@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const clientId = 'AsA36dL8zPz-szB5VNadnw';
-const secret = 'gjwco40-tDx4EimGWIQTNS_FhiDcSg';
-const redirectUri = 'http://localhost:5173/callback';
+const clientId = import.meta.env.VITE_CLIENT_ID;
+const secret = import.meta.env.VITE_SECRET;
+const redirectUri = import.meta.env.VITE_REDIRECT_URI;
 const authUrl = new URL(`https://www.reddit.com/api/v1/authorize?`);
 const scopesString = 'identity read';
 

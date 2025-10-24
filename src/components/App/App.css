@@ -19,7 +19,7 @@
   }
 }
 
-@media only screen and (max-width: 1160px) {
+@media only screen and (max-width: 960px) {
   .grid-container {
     display: flex;
   }

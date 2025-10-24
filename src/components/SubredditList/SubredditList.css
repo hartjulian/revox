@@ -12,7 +12,7 @@
     margin: 2rem;
 }
 
-@media only screen and (max-width: 1160px) {
+@media only screen and (max-width: 960px) {
     .subreddits-container {
         display: none;
         position: absolute;
