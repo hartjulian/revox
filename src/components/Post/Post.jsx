@@ -6,7 +6,7 @@ function Post({ post }) {
 
     return (
         <div className='post'>
-            <h2 className='title'><a href={`${redditUrl}${post.permalink}`} target='_blank'>{post.title}</a></h2>
+            <h2 className='title'><a href={`${redditUrl}${post.permalink}`} target='_blank'>{post.title.replace(/&amp;/g, '&')}</a></h2>
             {(post.imageUrl) && <div className='image-container'><img src={post.imageUrl.replace(/&amp;/g, '&')} alt={post.title} /></div>}
             {(post.selftext) && <TextRenderer text={post.selftext}  paragraphClass='selftext' />}
             <div className='post-details'>
